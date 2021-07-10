@@ -1,8 +1,9 @@
-from apps.movies.models import Movie, MovieImage
 from django import forms
+from apps.movies.models import Movie, MovieImage
+from django.forms import ModelForm
 
 
-class MovieFrom(forms.ModelForm):
+class MovieForm(ModelForm):
 
     class Meta:
         model = Movie

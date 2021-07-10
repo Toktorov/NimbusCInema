@@ -1,9 +1,10 @@
 from django.urls import path
-from apps.movies import views
-from apps.movies.views import create_movie
+from apps.movies.views import index, create, detail, update, delete
 
 urlpatterns = [
-    path('', views.MovieIndexView.as_view(), name = 'index'),
-    path('create/', create_movie, name = 'create'),
-    path('detail/<int:id>/', views.MovieDetailView.as_view(), name = 'detail'),
+    path('', index, name='index'),
+    path('create/', create, name='create'),
+    path('detail<int:id>/', detail, name='detail'),
+    path('update/<int:id>/', update, name='update'),
+    path('delete/<int:id>/', delete, name='delete'),
 ]
