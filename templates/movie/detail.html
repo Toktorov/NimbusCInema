@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% block content %}
+    {% for movies in movie %}
+    <div class="col">
+        <p class="card-title" style = "margin-top: 10px">{{ movies.title }}</p>
+        <p class="card-title">{{ movies.description }}</p>
+        
+    </div>
+    <div>
+        <a href = '{% url "delete" profiles.id %}' class="btn btn-squared-default btn-outline-dark" style = "margin-top: 10px">DELETE</a>
+        <a href = '{% url "update" profiles.id %}' class="btn btn-squared-default btn-outline-dark" style = "margin-top: 10px">UPDATE</a>
+    </div>
+    {% endfor %}
+
+{% endblock %}

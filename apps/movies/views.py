@@ -7,6 +7,7 @@ class MovieIndexView(ListView):
     model = Movie
     template_name = 'movie/index.html'
 
+
 class MovieDetailView(DetailView):
     model = Movie
     template_name = 'movie/detail.html'

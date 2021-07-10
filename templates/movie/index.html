@@ -1,10 +1,14 @@
 {% extends 'index.html' %}
 {% block content %}
-    {% for movie in movies %}
-    <div class="col">
-        <p class="card-title" style = "margin-top: 10px">{{ movie.title}}</p>
-        <p class="card-title">{{ movie.decription }}</p> 
+    {% for movies in movie %}
+    <div>
+        <p>{{ movies.title }}</p>
+        <p>{{ movies.description }}</p>
     </div>
     {% endfor %}
-
+    <div>
+        <a href = '{% url "create" %}'>CREATE</a>
+        <a href = '{% url "create" %}'>CREATE</a>
+        <a href = '{% url "create" %}'>CREATE</a>
+    </div>
 {% endblock %}

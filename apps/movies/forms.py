@@ -6,7 +6,7 @@ class MovieFrom(forms.ModelForm):
 
     class Meta:
         model = Movie
-    f   fields = ['title', 'description']
+        fields = ['title', 'description']
 
 class MovieImageForm(forms.ModelForm):
     class Meta:
