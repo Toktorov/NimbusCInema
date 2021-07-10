@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+{% block content %}
+    {% for movie in movies %}
+    <div class="col">
+        <p class="card-title" style = "margin-top: 10px">{{ movie.title}}</p>
+        <p class="card-title">{{ movie.decription }}</p> 
+    </div>
+    {% endfor %}
+
+{% endblock %}
