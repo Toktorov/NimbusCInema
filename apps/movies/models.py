@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Movie(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     title = models.CharField(max_length=255, blank=True)
+    en_title = models.CharField(max_length=255, blank=True)
     description = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
 

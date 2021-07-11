@@ -7,16 +7,16 @@ from django.db.models import Q
 
 # Create your views here.
 def index(request):
-    posts = Movie.objects.all()
+    movies = Movie.objects.all()
     if 'key_word' in request.GET:
         key = request.GET.get('words')
         posts = Movie.objects.filter(Q(title__icontains=key) |
                                     Q(description__icontains=key))
-    return render(request, 'movie/index.html', {'posts': posts})
+    return render(request, 'movie/index.html', {'movies': movies})
 
 def detail(request, id=id):
-    posts = Movie.objects.get(id=id)
-    return render(request, 'movie/detail.html', {"posts": posts})
+    movies = Movie.objects.get(id=id)
+    return render(request, 'movie/detail.html', {"movies": movies})
 
 def create(request):
     form = MovieForm(request.POST or None)
@@ -28,7 +28,7 @@ def create(request):
             movie.title = form.cleaned_data['title']
             movie.description = form.cleaned_data['description']
             movie.save()
-            formset = MovieImageFormSet(request.POST, request.FILES, instance=post)
+            formset = MovieImageFormSet(request.POST, request.FILES, instance=movie)
             if formset.is_valid():
                 formset.save()
             return redirect('index')
