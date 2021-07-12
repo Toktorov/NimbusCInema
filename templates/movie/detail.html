@@ -1,17 +1,22 @@
-{% extends 'index.html' %}
+{% extends 'detail_index.html' %}
 {% block content %}
 <div>
-    {% for image in posts.post_image.all %}
-    <div>
-        <p><img src="{{ image.image.url }}" width="900" height="600" alt="..."
-                style="box-shadow: 0 0 10px rgba(0,0,0,10); margin-top: 20px"></p>
-        </a>
-    </div>
-    {% endfor %}
+{% for image in movie.movie_image.all %}
+<div>
+    <p><img src="{{ image.image.url }}" width="900" height="600" alt="..."
+            style="box-shadow: 0 0 10px rgba(0,0,0,10); margin-top: 20px"></p>
+    </a>
 </div>
-<h5 class="card-title">{{ movie.title }}</h5>
-<p class="card-text">{{ movie.description|truncatewords:20}}</p>
-<p class="card-text">{{ movie.created }}</p>
-<p class="card-text">By {{ movie.user }}</p>
-<a href="{% url 'index' %}" class="btn btn-dark" style="margin-top: 10px">Go back</a>
-{% endblock %}
+{% endfor %}
+</div>
+<div class="container">
+    <div class="row">
+        <h3 class="card-title" style="margin-top: 10px">{{ movie.title }}</h3>
+    </div>
+    <div class="col">
+        <p class="card-text">{{ movie.description }}</p>
+    </div>
+    <div class="col">
+        <p class="card-text" style="margin-top: 10px">{{ movie.created }}</p>
+    </div>
+    {% endblock %}

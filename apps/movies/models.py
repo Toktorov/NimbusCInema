@@ -24,9 +24,9 @@ class MovieImage(models.Model):
     movie = models.ForeignKey(
         Movie,
         on_delete=models.CASCADE,
-        related_name='post_image'
+        related_name='movie_image'
     )
     image = models.ImageField(
-        upload_to='post',
+        upload_to='movie',
         verbose_name='Картинки'
     )

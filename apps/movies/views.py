@@ -16,7 +16,7 @@ def index(request):
 
 def detail(request, id=id):
     movies = Movie.objects.get(id=id)
-    return render(request, 'movie/detail.html', {"movies": movies})
+    return render(request, 'movie/detail.html', {"movie": movies})
 
 def create(request):
     form = MovieForm(request.POST or None)
