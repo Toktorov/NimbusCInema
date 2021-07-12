@@ -26,7 +26,9 @@ def create(request):
             movie = Movie()
             movie.user = request.user
             movie.title = form.cleaned_data['title']
+            movie.en_title = form.cleaned_data['en_title']
             movie.description = form.cleaned_data['description']
+            movie.url_trailer = form.cleaned_data['url_trailer']
             movie.save()
             formset = MovieImageFormSet(request.POST, request.FILES, instance=movie)
             if formset.is_valid():

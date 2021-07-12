@@ -3,18 +3,27 @@
 <div>
 {% for image in movie.movie_image.all %}
 <div>
-    <p><img src="{{ image.image.url }}" width="900" height="600" alt="..."
-            style="box-shadow: 0 0 10px rgba(0,0,0,10); margin-top: 20px"></p>
+    <p><img src="{{ image.image.url }}" width="200" height="300" alt="..."
+            style="box-shadow: 0 0 10px rgba(0,0,0,10); margin-top: 50px; margin-left: 400px;"></p>
     </a>
 </div>
 {% endfor %}
 </div>
 <div class="container">
     <div class="row">
-        <h3 class="card-title" style="margin-top: 10px">{{ movie.title }}</h3>
+        <h3 class="card-title" style="margin-top: 10px; margin-left: 400px;">{{ movie.title }}</h3>
+    </div>
+    <div class="row">
+        <h3 class="card-title" style="margin-top: 10px; margin-left: 15px;">Описание:</h3>
     </div>
     <div class="col">
         <p class="card-text">{{ movie.description }}</p>
+    </div>
+    <div class="row">
+        <h3 class="card-title" style="margin-top: 20px; margin-left: 15px;">Трейлер:</h3>
+    </div>
+    <div class="video">
+        <iframe width="1050px" height="600px" src="{{ movie.url_trailer }}" frameborder="0" allowfullscreen></iframe>
     </div>
     <div class="col">
         <p class="card-text" style="margin-top: 10px">{{ movie.created }}</p>

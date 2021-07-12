@@ -7,6 +7,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=255, blank=True)
     en_title = models.CharField(max_length=255, blank=True)
     description = models.TextField()
+    url_trailer = models.CharField(max_length=255, blank=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
