@@ -7,11 +7,11 @@
                             <p><a href="{% url 'detail' movie.id %}"><img src="{{ image.image.url }}"width="120px" height= "168px"
                             class="d-block w-100" alt="..." style="box-shadow: 0 0 10px rgba(0,0,0,10); margin-top: 10px;"></a></p>
                         </a>
+                        <h4 href="{% url 'detail' movie.id %}" class="card-title" style = "margin-top: 10px; color: red;">{{ movie.title }}</h4>
+                        <h5 href="{% url 'detail' movie.id %}" class="card-title">{{ movie.en_title}}</h5>
                     </div>
                 {% endfor %}
             </div>
-            <h4 href="{% url 'detail' movie.id %}" class="card-title" style = "margin-top: 10px; color: red;">{{ movie.title }}</h4>
-            <h5 href="{% url 'detail' movie.id %}" class="card-title">{{ movie.en_title}}</h5>
             <!-- <p class="card-text">{{ movie.description|truncatewords:20}}</p>
             <p class="card-text">{{ movie.created }}</p>
             <p class="card-text">By {{ movie.user }}</p> -->

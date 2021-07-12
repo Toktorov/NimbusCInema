@@ -1,0 +1,25 @@
+{% extends 'profile_index.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+    <div class="container mt-5    d-flex justify-content-center align-items-center">
+        <div class=" " style="display:center; justify-content: center;width:20%; ">
+            {% if user.image %}
+            <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}"
+                     alt="" style="width: 40px;border-radius: 100%;">
+            {% else %}
+                <img src="{{ image.image.url }}"
+                     alt="" style="width: 40px;border-radius: 100%;">  
+            {% endif %}
+        </div>
+
+    <div class="">
+        <div class="d-flex align-items-center w-100">
+            <div>
+                <h1 class="m-5" style = "margin-left: +100px">{{ user.socialaccount_set.all.0.extra_data.name }}</h1>
+                <h1 style = "margin-left: +100px" class="m-5" >{{ user.username }}</h1>
+            </div>
+        </div>
+        <div>
+    {% else %}
+    {% endif %}
+{% endblock  %}

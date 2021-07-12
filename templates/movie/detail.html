@@ -17,13 +17,16 @@
         <h3 class="card-title" style="margin-top: 10px; margin-left: 15px;">Описание:</h3>
     </div>
     <div class="col">
-        <p class="card-text">{{ movie.description }}</p>
+        <p class="card-text" style = "word-wrap:break-word;">{{ movie.description }}</p>
     </div>
     <div class="row">
         <h3 class="card-title" style="margin-top: 20px; margin-left: 15px;">Трейлер:</h3>
     </div>
     <div class="video">
         <iframe width="1050px" height="600px" src="{{ movie.url_trailer }}" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="row">
+        <h3 class="card-title" style="margin-top: 20px; margin-left: 30px;">Смотреть фильм:</h3>
     </div>
     <div class="video">
         <iframe width="1050px" height="600px" src="//ok.ru/videoembed/2293062306306" frameborder="0" allow="autoplay" allowfullscreen></iframe>

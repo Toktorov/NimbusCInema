@@ -21,7 +21,7 @@ def detail(request, id=id):
 def create(request):
     form = MovieForm(request.POST or None)
     MovieImageFormSet = inlineformset_factory(Movie, MovieImage, form=MovieImageForm, extra=1)
-    if request.method == 'POST':
+    if request.method == 'POST' and user is staff:
         if form.is_valid():
             movie = Movie()
             movie.user = request.user
