@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{% block content %}
+  <div class="container">
+      <p>Are you sure delete this post? {{ post.title }}</p>
+    <form method="post">
+      {% csrf_token %}
+      <a href="{% url 'index' %}" class="btn btn-dark">Go back</a>
+      <button class="btn btn-danger" type="submit">Delete</button>
+    </form>
+  </div>
+{% endblock %}

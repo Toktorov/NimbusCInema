@@ -5,29 +5,26 @@
             <h1 class="m_2" style="margin-left: 20px; margin-top: -10px;">Nimbus Cinema</h1>
         </a>
         <a href="https://github.com/Toktorov/Django_rest_project.git">
-            <h1 class="m_2" style="margin-left: 20px; margin-top: -10px;">Project in Git Hub</h1>
+            <h1 class="m_2" style="margin-left: 20px; margin-top: -10px;">Проект в Git Hub</h1>
         </a>
         {% if user.is_authenticated %}
         <a href="{% url 'create' %}">
-            <h1 class="m_2" style="margin-left: 20px; margin-top: -10px;">Create</h1>
+            <h1 class="m_2" style="margin-left: 20px; margin-top: -10px;">Создать</h1>
         </a>
         <a href="{% url 'logout' %}">
-            <h1 class="m_2" style="margin-left: 20px; margin-top: -10px;">Log out</h1>
+            <h1 class="m_2" style="margin-left: 20px; margin-top: -10px;">Выйти</h1>
         </a>
         {% else %}
         <a href="{% url 'login' %}">
-            <h1 class="m_2" style="margin-left: 20px; margin-top: -10px;">Login</h1>
+            <h1 class="m_2" style="margin-left: 20px; margin-top: -10px;">Вход</h1>
         </a>
         <a href="{% url 'signup' %}">
-            <h1 class="m_2" style="margin-left: 20px; margin-top: -10px;">Sign UP</h1>
-        </a>
-        <a href="{% provider_login_url 'google' %}">
-            <h1 class="m_2" style="margin-left: 20px; margin-top: -10px;">Login with Google</h1>
+            <h1 class="m_2" style="margin-left: 20px; margin-top: -10px;">Регистрация</h1>
         </a>
         {% endif %}
         {% if user.is_authenticated and user != user.username %}
         <a href="{% url 'profile' user.username %}">
-            <h1 class="m_2" style="margin-left: 1700px; margin-top: -40px;">Welcome {{ user.username }}!</h1>
+            <h1 class="m_2" style="margin-left: 1700px; margin-top: -40px;">{{ user.username }}</h1>
         </a>
         {% endif %}
     </div>

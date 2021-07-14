@@ -47,7 +47,8 @@ INSTALLED_APPS = [
 
     #apps
     'apps.movies',
-    'apps.users'
+    'apps.users',
+    'apps.comments'
 ]
 
 MIDDLEWARE = [

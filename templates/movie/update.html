@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% block content  %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+        <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">Title</label>
+            <input type="text" name="title" class="form-control" id="formGroupExampleInput"
+                   placeholder="Example input placeholder">
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">Description</label>
+            <input type="text" name="description" class="form-control" id="formGroupExampleInput2"
+                   placeholder="Another input placeholder">
+        </div>
+        <div class="mb-3">
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Choice file</label>
+                <input type="file" name='file' class="form-control-file" id="exampleFormControlFile1">
+            </div>
+        </div>
+        <div class="container">
+            <button class="btn btn-dark active" type="submit">Update</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
