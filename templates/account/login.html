@@ -1,113 +1,46 @@
-{% load static%}
-{% load socialaccount %}
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE HTML>
-<html>
-<head>
-<title>Nimbus Cinema</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Movie_store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
-<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
-<!-- start plugins -->
-<script type="text/javascript" src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
-<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
-</head>
-<body>
-{% include 'include/navbar.html' %}
-<div class="container">
-	<div class="container_wrap">
-		<div class="header_top">
-			<div class="clearfix"> </div>
-	      </div>
-	      <div class="content">
-      	     <div class="register">
-			   <div class="col-md-6 login-left">
-			  	 <h3>Nimbus Cinema</h3>
-				 <p>Создав аккаунт в нашем кинотеатре вы можете оставлять свое мнение на наши фильмы</p>
-				 <a class="acount-btn" href="{% url 'signup' %}">Создать аккаунт</a>
-			   </div>
-			   <div class="col-md-6 login-right">
-			  	<h3>Registered Customers</h3>
-				<p>If you have an account with us, please log in.</p>
-				<form>
-				  <div>
-					<span>Email Address<label>*</label></span>
-					<input type="text"> 
-				  </div>
-				  <div>
-					<span>Password<label>*</label></span>
-					<input type="text"> 
-				  </div>
-				  <a class="forgot" href="#"></a>
-				  <input type="submit" value="Войти">
-				  <a class="acount-btn" href="{% provider_login_url 'google' %}">Войти с Googlе</a>
-			    </form>
-			   </div>	
-			   <div class="clearfix"> </div>
-		     </div>
-           </div>
-    </div>
+{% extends "detail_index.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Sign In" %}</h1>
+
+{% get_providers as socialaccount_providers %}
+
+{% if socialaccount_providers %}
+<p>{% blocktrans with site.name as site_name %}Please sign in with one
+of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+<div class="socialaccount_ballot">
+
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+
+  <div class="login-or">{% trans 'or' %}</div>
+
 </div>
-<div class="container"> 
- <footer id="footer">
- 	<div id="footer-3d">
-		<div class="gp-container">
-			<span class="first-widget-bend"> </span>
-		</div>		
-	</div>
-    <div id="footer-widgets" class="gp-footer-larger-first-col">
-		<div class="gp-container">
-            <div class="footer-widget footer-1">
-            	<div class="wpb_wrapper">
-					<img src="{% static 'images/f_logo.png' %}" alt=""/>
-				</div> 
-	          <br>
-	          <p>It is a long established fact that a reader will be distracted by the readable content of a page.</p>
-			  <p class="text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered.</p>
-			 </div>
-			 <div class="footer_box">
-			  <div class="col_1_of_3 span_1_of_3">
-					<h3>Categories</h3>
-					<ul class="first">
-						<li><a href="#">Dance</a></li>
-						<li><a href="#">History</a></li>
-						<li><a href="#">Specials</a></li>
-					</ul>
-		     </div>
-		     <div class="col_1_of_3 span_1_of_3">
-					<h3>Information</h3>
-					<ul class="first">
-						<li><a href="#">New products</a></li>
-						<li><a href="#">top sellers</a></li>
-						<li><a href="#">Specials</a></li>
-					</ul>
-		     </div>
-		     <div class="col_1_of_3 span_1_of_3">
-					<h3>Follow Us</h3>
-					<ul class="first">
-						<li><a href="#">Facebook</a></li>
-						<li><a href="#">Twitter</a></li>
-						<li><a href="#">Youtube</a></li>
-					</ul>
-					<div class="copy">
-				      <p>&copy; 2015 Template by <a href="http://w3layouts.com" target="_blank"> w3layouts</a></p>
-			        </div>
-		     </div>
-		    <div class="clearfix"> </div>
-	        </div>
-	        <div class="clearfix"> </div>
-		</div>
-	</div>
-  </footer>
-</div>		
-</body>
-</html>
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% else %}
+<p>{% blocktrans %}If you have not created an account yet, then please
+<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+{% endif %}
+
+<form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+</form>
+
+{% endblock %}
