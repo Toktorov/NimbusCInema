@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from apps.movies.models import Movie, MovieImage, Like
 from apps.movies.forms import MovieForm, MovieImageForm
+from apps.comments.models import Comment
 from django.forms import inlineformset_factory
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -22,6 +23,14 @@ def detail(request, id=id):
             like.delete()
         except:
             Like.objects.create(user=request.user, movie=movies)
+
+    if 'comment' in request.POST:
+            try:
+                text = request.POST.get('text')
+                comment_obj = Comment.objects.create(user=request.user, movie=movies, text=text)
+                return redirect('detail', movie.id)
+            except:
+                print("Error")
     return render(request, 'movie/detail.html', {"movie": movies})
 
 def create(request):

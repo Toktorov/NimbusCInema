@@ -1,13 +1,13 @@
 {% extends 'detail_index.html' %}
 {% block content %}
 <div>
-{% for image in movie.movie_image.all %}
-<div>
-    <p><img src="{{ image.image.url }}" width="200" height="300" alt="..."
-            style="box-shadow: 0 0 10px rgba(0,0,0,10); margin-top: 50px; margin-left: 400px;"></p>
-    </a>
-</div>
-{% endfor %}
+    {% for image in movie.movie_image.all %}
+    <div>
+        <p><img src="{{ image.image.url }}" width="200" height="300" alt="..."
+                style="box-shadow: 0 0 10px rgba(0,0,0,10); margin-top: 50px; margin-left: 400px;"></p>
+        </a>
+    </div>
+    {% endfor %}
 </div>
 <div class="container">
     <div class="row">
@@ -17,39 +17,47 @@
         <h3 class="card-title" style="margin-top: 10px; margin-left: 15px;">Описание:</h3>
     </div>
     <div class="col">
-        <p class="card-text" style = "word-wrap:break-word;">{{ movie.description }}</p>
+        <p class="card-text" style="word-wrap:break-word;">{{ movie.description }}</p>
     </div>
     <div class="row">
         <h3 class="card-title" style="margin-top: 20px; margin-left: 20px;">Трейлер:</h3>
     </div>
-    <div class="video-js vjs-default-skin vjs-big-play-centered vjs-paused my_video_1-dimensions vjs-controls-enabled vjs-workinghover vjs-user-active">
+    <div
+        class="video-js vjs-default-skin vjs-big-play-centered vjs-paused my_video_1-dimensions vjs-controls-enabled vjs-workinghover vjs-user-active">
         <iframe width="1050px" height="600px" src="{{ movie.trailer.url }}" sandbox allowfullscreen></iframe>
     </div>
     <div class="row">
         <h3 class="card-title" style="margin-top: 20px; margin-left: 20px;">Смотреть фильм:</h3>
     </div>
-    <div class="video-js vjs-default-skin vjs-big-play-centered vjs-paused my_video_1-dimensions vjs-controls-enabled vjs-workinghover vjs-user-active">
+    <div
+        class="video-js vjs-default-skin vjs-big-play-centered vjs-paused my_video_1-dimensions vjs-controls-enabled vjs-workinghover vjs-user-active">
         <iframe width="1050px" height="600px" src="{{ movie.film.url }}" sandbox allowfullscreen></iframe>
     </div>
+    <div class="row">
+        <h4 class="card-title" style="margin-top: 10px; margin-left: 15px;">Год выпуска: {{ movie.year }}</h4>
+        <h4 class="card-title" style="margin-top: 10px; margin-left: 15px;">Страна: {{ movie.country }}</h4>
+        <h4 class="card-title" style="margin-top: 10px; margin-left: 15px;">Актеры: {{ movie.actors }}</h4>
+        
+    </div>
     {% if user.is_authenticated %}
-            <form method="post">
-                {% csrf_token %}
-                <input type="hidden" name="like">
-                <button type="submit" class="btn btn-dark" style = "margin-top: 10px">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="bi bi-heart-fill" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                    </svg>
-                </button>
-            </form>
-            {% else %}
-            {% endif %}
-            <div class="ml-3">
-                <p>{{ movie.likes_movie.all.count }} человеку понравилось</p>
-            </div>
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="like">
+        <button type="submit" class="btn btn-dark" style="margin-top: 10px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+            </svg>
+        </button>
+    </form>
+    {% else %}
+    {% endif %}
+    <div class="ml-3">
+        <p>{{ movie.likes_movie.all.count }} человеку понравилось</p>
+    </div>
     <div class="comments-area">
-        <h4 style = "margin-top: 20px; margin-left: 5px;">{{ movie.comment.all.count }} отзыв:</h4>
+        <h4 style="margin-top: 20px; margin-left: 5px;">{{ movie.comment.all.count }} отзыв:</h4>
         {% if user.is_authenticated %}
         <form method="post">
             {% csrf_token %}
@@ -64,24 +72,24 @@
         {% else %}
         {% endif %}
         {% for comment in movie.get_parent %}
-                        <div class="comment-list">
-                            <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="img/blog/c1.jpg" alt="">
-                                    </div>
-                                    <div class="desc">
-                                        <a class="comment_author" style="margin-top: 10px; margin-left: 10px">{{ comment.user }}</a>  
-                                        <p class="comment" style="margin-top: 10px; margin-left: 10px">{{ comment.text }}</p>
-                                        <p class="date" style = "margin-left: 10px;">{{ comment.comment_created }}</p>
-                                    </div>
-                                </div>
-                            </div>
+        <div class="comment-list">
+            <div class="single-comment justify-content-between d-flex">
+                <div class="user justify-content-between d-flex">
+                    <div class="thumb">
+                        <img src="img/blog/c1.jpg" alt="">
+                    </div>
+                    <div class="desc">
+                        <a class="comment_author" style="margin-top: 10px; margin-left: 10px">{{ comment.user }}</a>
+                        <p class="comment" style="margin-top: 10px; margin-left: 10px">{{ comment.text }}</p>
+                        <p class="date" style="margin-left: 10px;">{{ comment.comment_created }}</p>
+                    </div>
+                </div>
+            </div>
             {% endfor %}
-    <div class="col">
-        <p class="card-text" style="margin-top: 20px">Фильм добвален в {{ movie.created }}</p>
-        <a href="{% url 'update' movie.id %}" class="hvr-shutter-out-vertical">Обновить</a>
-        <a href="{% url 'delete' movie.id %}" class="hvr-shutter-out-vertical">Удалить</a>
-    </div>
-</div>
-{% endblock %}
+            <div class="col">
+                <p class="card-text" style="margin-top: 20px">Фильм добвален в {{ movie.created }}</p>
+                <a href="{% url 'update' movie.id %}" class="hvr-shutter-out-vertical">Обновить</a>
+                <a href="{% url 'delete' movie.id %}" class="hvr-shutter-out-vertical">Удалить</a>
+            </div>
+        </div>
+        {% endblock %}
