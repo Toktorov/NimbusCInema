@@ -38,6 +38,11 @@ class Movie(models.Model):
         blank = True
     )
 
+    director = models.CharField(
+        max_length = 255,
+        blank = True
+    )
+
     actors = models.CharField(
         max_length = 255,
         blank = True

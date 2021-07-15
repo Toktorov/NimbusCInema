@@ -6,7 +6,7 @@ from django.forms import ModelForm
 class MovieForm(ModelForm):
     class Meta:
         model = Movie
-        fields = ['title', 'en_title', 'description', 'trailer', 'film', 'year', 'country', 'actors' ]
+        fields = ['title', 'en_title', 'description', 'trailer', 'film', 'year', 'country', 'director', 'actors' ]
 
 class MovieImageForm(forms.ModelForm):
     class Meta:
