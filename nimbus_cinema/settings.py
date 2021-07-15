@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 
     # register with google
     'django.contrib.sites',
@@ -80,6 +81,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'nimbus_cinema.wsgi.application'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
 
 
 # Database

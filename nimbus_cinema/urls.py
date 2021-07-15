@@ -17,11 +17,20 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from django.contrib.auth.views import LogoutView
+
+api_urlpatterns = [
+    path('movies/', include('apps.movies.api.urls')),
+    path('users/', include('apps.users.api.urls')),
+    path('comments/', include('apps.comments.api.urls')),
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(api_urlpatterns)),
     path('', include('apps.movies.urls')),
     path('accounts/', include('allauth.urls')),
+    path('logout/', LogoutView.as_view(), name='logout'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
